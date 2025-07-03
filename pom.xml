@@ -46,6 +46,12 @@
             <scope>runtime</scope>
         </dependency>
         
+        <!-- Hibernate SQLite Dialect -->
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-community-dialects</artifactId>
+        </dependency>
+        
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>

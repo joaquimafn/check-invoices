@@ -17,6 +17,9 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    profiles:
+      - prod
+      - production
 
   app:
     build: .
@@ -27,10 +30,28 @@ services:
       postgres:
         condition: service_healthy
     environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-prod}
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/infuse_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
     restart: unless-stopped
+    profiles:
+      - prod
+      - production
+
+  app-dev:
+    build: .
+    container_name: infuse-app-dev
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    volumes:
+      - ./dev-database.db:/app/dev-database.db
+    restart: unless-stopped
+    profiles:
+      - dev
+      - development
 
 volumes:
   postgres_data: 
