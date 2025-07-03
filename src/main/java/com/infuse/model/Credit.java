@@ -16,26 +16,26 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "creditos")
+@Table(name = "credits")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Credito {
+public class Credit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private String numeroCredito;
-    private String numeroNfse;
-    private LocalDate dataConstituicao;
-    private BigDecimal valorIssqn;
-    private String tipoCredito;
-    private boolean simplesNacional;
-    private BigDecimal aliquota;
-    private BigDecimal valorFaturado;
-    private BigDecimal valorDeducao;
-    private BigDecimal baseCalculo;
+    private String creditNumber;
+    private String invoiceNumber;
+    private LocalDate constitutionDate;
+    private BigDecimal issqnValue;
+    private String creditType;
+    private boolean simplifiedTaxSystem;
+    private BigDecimal taxRate;
+    private BigDecimal invoicedValue;
+    private BigDecimal deductionValue;
+    private BigDecimal taxableAmount;
 } 
