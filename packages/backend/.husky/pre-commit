@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Verificando código com lint-staged..."
+cd "$(dirname "$0")/.." && npm run lint-staged 

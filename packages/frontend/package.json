@@ -1,0 +1,12 @@
+{
+    "name": "frontend",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "echo 'Inicie seu servidor de desenvolvimento aqui'",
+        "build": "echo 'Coloque seu comando de build aqui'",
+        "test": "echo 'Coloque seu comando de teste aqui'"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

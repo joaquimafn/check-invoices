@@ -21,9 +21,10 @@ services:
       - prod
       - production
 
-  app:
-    build: .
-    container_name: infuse-app
+  backend:
+    build:
+      context: ./packages/backend
+    container_name: infuse-backend
     ports:
       - "8080:8080"
     depends_on:
@@ -39,19 +40,32 @@ services:
       - prod
       - production
 
-  app-dev:
-    build: .
-    container_name: infuse-app-dev
+  backend-dev:
+    build:
+      context: ./packages/backend
+    container_name: infuse-backend-dev
     ports:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: dev
     volumes:
-      - ./dev-database.db:/app/dev-database.db
+      - ./packages/backend/dev-database.db:/app/dev-database.db
     restart: unless-stopped
     profiles:
       - dev
       - development
+
+  # Serviço para o frontend (comentado até ser implementado)
+  # frontend:
+  #   build:
+  #     context: ./packages/frontend
+  #   container_name: infuse-frontend
+  #   ports:
+  #     - "3000:80"
+  #   restart: unless-stopped
+  #   profiles:
+  #     - prod
+  #     - production
 
 volumes:
   postgres_data: 

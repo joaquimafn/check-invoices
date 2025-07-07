@@ -1,0 +1,21 @@
+{
+    "name": "infuse-backend",
+    "version": "1.0.0",
+    "description": "Backend para o projeto Infuse",
+    "private": true,
+    "scripts": {
+        "lint": "mvn checkstyle:check",
+        "format": "mvn spotless:apply",
+        "prepare": "husky install",
+        "lint-staged": "lint-staged"
+    },
+    "lint-staged": {
+        "src/**/*.java": [
+            "./format-code.sh"
+        ]
+    },
+    "devDependencies": {
+        "husky": "^8.0.3",
+        "lint-staged": "^15.2.0"
+    }
+}
