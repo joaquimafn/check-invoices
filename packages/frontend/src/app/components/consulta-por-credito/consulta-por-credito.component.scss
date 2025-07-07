@@ -1,0 +1,137 @@
+.form-container {
+  text-align: left;
+
+  .form-header {
+    display: flex;
+    align-items: center;
+    color: #1e3a5f;
+    margin-bottom: 8px;
+
+    i {
+      font-size: 1.3rem;
+      margin-right: 10px;
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+  }
+
+  .form-description {
+    color: #6c757d;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+  }
+
+  .form-content {
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #343a40;
+      font-size: 0.9rem;
+    }
+
+    .input-wrapper {
+      input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        font-size: 1rem;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+
+        &::placeholder {
+          color: #adb5bd;
+        }
+
+        &:focus {
+          border-color: #80bdff;
+          outline: none;
+          box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+      }
+    }
+
+    .error-message {
+      color: #dc3545;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 12px;
+      background-color: #63d4a0; // Cor verde do botão
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+
+      i {
+        margin-right: 8px;
+      }
+
+      &:hover:not(:disabled) {
+        background-color: #52c28e;
+      }
+
+      &:disabled {
+        background-color: #adb5bd;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+.credito-details {
+  text-align: left;
+
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #343a40;
+    margin-bottom: 10px;
+
+    strong {
+      color: #1e3a5f;
+      margin-right: 5px;
+    }
+  }
+
+  .new-search-button {
+    width: auto;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #6c757d;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #5a6268;
+    }
+  }
+}
+

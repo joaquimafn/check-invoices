@@ -1,0 +1,27 @@
+<div class="form-container">
+  <div class="form-header">
+    <i class="far fa-file-alt"></i>
+    <h4>Consulta por NFS-e</h4>
+  </div>
+  <p class="form-description">Digite o número da NFS-e para consultar os créditos relacionados</p>
+
+  <form class="form-content" [formGroup]="form" (ngSubmit)="buscar()">
+    <label for="numero-nfse">Número da NFS-e</label>
+    <div class="input-wrapper">
+      <input id="numero-nfse" type="number" formControlName="numeroNfse" placeholder="Ex: 123456789">
+    </div>
+    <div class="error-message" *ngIf="form.get('numeroNfse')?.touched && form.get('numeroNfse')?.hasError('required')">
+      O número da NFS-e é obrigatório.
+    </div>
+
+    <button class="submit-button" type="submit" [disabled]="form.invalid || loading">
+      <i class="fas fa-search"></i>
+      <span *ngIf="!loading">Consultar</span>
+      <mat-spinner *ngIf="loading" [diameter]="24"></mat-spinner>
+    </button>
+  </form>
+</div>
+
+<div class="results-container" *ngIf="creditos$ | async as creditos">
+    <app-tabela-resultados [dataSource]="creditos"></app-tabela-resultados>
+</div>

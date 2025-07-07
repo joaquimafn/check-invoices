@@ -1,0 +1,34 @@
+<div class="form-container" *ngIf="!credito">
+  <div class="form-header">
+    <i class="far fa-credit-card"></i>
+    <h4>Consulta por Crédito</h4>
+  </div>
+  <p class="form-description">Digite o número do crédito para consultar as informações detalhadas</p>
+
+  <form class="form-content" [formGroup]="form" (ngSubmit)="buscar()">
+    <label for="numero-credito">Número do Crédito</label>
+    <div class="input-wrapper">
+      <input id="numero-credito" type="text" formControlName="numeroCredito" placeholder="Ex: CR123456789">
+    </div>
+    <div class="error-message" *ngIf="form.get('numeroCredito')?.touched && form.get('numeroCredito')?.hasError('required')">
+      O número do crédito é obrigatório.
+    </div>
+
+    <button class="submit-button" type="submit" [disabled]="form.invalid || loading">
+      <i class="fas fa-search"></i>
+      <span *ngIf="!loading">Consultar</span>
+      <mat-spinner *ngIf="loading" [diameter]="24"></mat-spinner>
+    </button>
+  </form>
+</div>
+
+<div *ngIf="credito" class="credito-details">
+    <h3>Detalhes do Crédito</h3>
+    <p><strong>Nº do Crédito:</strong> {{ credito.id }}</p>
+    <p><strong>Nº da NFS-e:</strong> {{ credito.numeroNfse }}</p>
+    <p><strong>Valor:</strong> {{ credito.valorCredito | currency:'BRL' }}</p>
+    <p><strong>Data de Emissão:</strong> {{ credito.dataEmissao | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Status:</strong> {{ credito.status }}</p>
+
+    <button class="new-search-button" (click)="novaBusca()">Fazer Nova Busca</button>
+</div>
