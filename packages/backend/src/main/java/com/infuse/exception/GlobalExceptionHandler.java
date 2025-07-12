@@ -17,6 +17,23 @@ import org.springframework.web.context.request.WebRequest;
 @Slf4j
 public class GlobalExceptionHandler {
 
+  @ExceptionHandler(ResourceNotFoundException.class)
+  public ResponseEntity<ErrorResponseDTO> handleResourceNotFoundException(
+      ResourceNotFoundException ex, WebRequest request) {
+    log.error("Recurso não encontrado: {}", ex.getMessage());
+
+    ErrorResponseDTO errorResponse =
+        ErrorResponseDTO.builder()
+            .message(ex.getMessage())
+            .status(HttpStatus.NOT_FOUND.value())
+            .error("Not Found")
+            .path(request.getDescription(false))
+            .timestamp(LocalDateTime.now())
+            .build();
+
+    return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+  }
+
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<ErrorResponseDTO> handleValidationExceptions(
       MethodArgumentNotValidException ex, WebRequest request) {
