@@ -1,4 +1,7 @@
 #!/bin/bash
+# Navega para o diretório do script para garantir que os comandos Maven
+# sejam executados no local correto (packages/backend)
+cd "$(dirname "$0")"
 
 # Cores para output
 GREEN='\033[0;32m'

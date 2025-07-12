@@ -3,6 +3,7 @@ package com.infuse.controller;
 import com.infuse.dto.CreditDTO;
 import com.infuse.dto.ErrorResponseDTO;
 import com.infuse.service.CreditService;
+import com.infuse.service.KafkaProducerService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -27,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CreditoController {
 
     private final CreditService creditService;
+    private final KafkaProducerService kafkaProducerService;
 
     @Operation(summary = "Find credits by NFS-e number", description = "Retrieves all credits associated with a specific NFS-e (invoice) number")
     @ApiResponses(value = {
@@ -38,7 +40,12 @@ public class CreditoController {
     public ResponseEntity<List<CreditDTO>> buscarPorNumeroNfse(
             @Parameter(description = "NFS-e number to search for", example = "123456789") @PathVariable String numeroNfse) {
         log.info("Searching for credits with invoice number: {}", numeroNfse);
+        kafkaProducerService.publicarConsulta("nfs-e", numeroNfse);
         List<CreditDTO> credits = creditService.findByInvoiceNumber(numeroNfse);
+        if (credits.isEmpty()) {
+            log.info("No credits found for invoice number: {}", numeroNfse);
+            return ResponseEntity.notFound().build();
+        }
         log.info("Found {} credits for invoice number: {}", credits.size(), numeroNfse);
         return ResponseEntity.ok(credits);
     }
@@ -53,7 +60,12 @@ public class CreditoController {
     public ResponseEntity<CreditDTO> buscarPorNumeroCredito(
             @Parameter(description = "Credit number to search for", example = "CRED-001") @PathVariable String numeroCredito) {
         log.info("Searching for credit with number: {}", numeroCredito);
+        kafkaProducerService.publicarConsulta("credito", numeroCredito);
         CreditDTO credit = creditService.findByCreditNumber(numeroCredito);
+        if (credit == null) {
+            log.info("No credit found for number: {}", numeroCredito);
+            return ResponseEntity.notFound().build();
+        }
         log.info("Found credit with number: {}", numeroCredito);
         return ResponseEntity.ok(credit);
     }
