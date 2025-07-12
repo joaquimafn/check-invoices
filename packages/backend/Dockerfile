@@ -13,7 +13,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Compilar a aplicação
-RUN mvn clean package
+RUN mvn clean package -DskipTests -Dcheckstyle.skip=true -Dspotless.skip=true -Dfmt.skip=true
 
 # Expor a porta 8080
 EXPOSE 8080

@@ -44,6 +44,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://0.0.0.0:29092
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
@@ -79,7 +80,10 @@ services:
   backend-dev:
     build:
       context: ./packages/backend
+      dockerfile: Dockerfile
     container_name: infuse-backend-dev
+    command: sh -c "mvn spotless:apply && mvn spring-boot:run -Dspring-boot.run.profiles=dev"
+    working_dir: /app
     ports:
       - "8080:8080"
     depends_on:
@@ -89,9 +93,8 @@ services:
       SPRING_PROFILES_ACTIVE: dev
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     volumes:
-      - ./packages/backend/src:/app/src
-      - ./packages/backend/pom.xml:/app/pom.xml
-      - ./packages/backend/dev-database.db:/app/dev-database.db
+      - ./packages/backend:/app
+      - ~/.m2:/root/.m2
     restart: unless-stopped
     profiles:
       - dev

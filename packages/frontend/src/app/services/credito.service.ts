@@ -7,7 +7,7 @@ import { Credito } from './credito.model';
   providedIn: 'root'
 })
 export class CreditoService {
-  private apiUrl = 'http://localhost:8080/api/v1/credits';
+  private readonly apiUrl = 'http://localhost:8080/api/v1/credits';
 
   constructor(private http: HttpClient) { }
 

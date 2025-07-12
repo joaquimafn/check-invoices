@@ -4,10 +4,10 @@ FROM node:20-alpine as build
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN yarn install
 
 COPY . .
-RUN npm run build -- --output-path=./dist/frontend
+RUN yarn build -- --output-path=./dist/frontend
 
 # Stage 2: Serve application from Nginx
 FROM nginx:alpine
