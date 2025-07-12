@@ -1,7 +1,7 @@
 -- Script de Criação da Tabela (Compatível com SQLite e PostgreSQL)
 CREATE TABLE
     IF NOT EXISTS credits (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id SERIAL PRIMARY KEY,
         credit_number VARCHAR(50) NOT NULL,
         invoice_number VARCHAR(50) NOT NULL,
         constitution_date DATE NOT NULL,
