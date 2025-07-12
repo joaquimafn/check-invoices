@@ -12,7 +12,7 @@ import { Credito } from 'src/app/services/credito.model';
 export class TabelaResultadosComponent implements OnInit, OnDestroy {
   @Input() dataSource: Credito[] = [];
 
-  displayedColumns: string[] = ['id', 'numeroNfse', 'valorCredito', 'dataEmissao', 'status'];
+  displayedColumns: string[] = ['creditNumber', 'invoiceNumber', 'invoicedValue', 'constitutionDate', 'creditType'];
 
   private readonly destroy$ = new Subject<void>();
 
@@ -24,9 +24,9 @@ export class TabelaResultadosComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(result => {
         if (result.matches) {
-          this.displayedColumns = ['id', 'valorCredito', 'status'];
+          this.displayedColumns = ['creditNumber', 'invoicedValue', 'creditType'];
         } else {
-          this.displayedColumns = ['id', 'numeroNfse', 'valorCredito', 'dataEmissao', 'status'];
+          this.displayedColumns = ['creditNumber', 'invoiceNumber', 'invoicedValue', 'constitutionDate', 'creditType'];
         }
       });
   }

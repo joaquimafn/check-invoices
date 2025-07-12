@@ -10,7 +10,8 @@
     <div class="input-wrapper">
       <input id="numero-credito" type="text" formControlName="numeroCredito" placeholder="Ex: CR123456789">
     </div>
-    <div class="error-message" *ngIf="form.get('numeroCredito')?.touched && form.get('numeroCredito')?.hasError('required')">
+    <div class="error-message"
+      *ngIf="form.get('numeroCredito')?.touched && form.get('numeroCredito')?.hasError('required')">
       O número do crédito é obrigatório.
     </div>
 
@@ -23,12 +24,12 @@
 </div>
 
 <div *ngIf="credito" class="credito-details">
-    <h3>Detalhes do Crédito</h3>
-    <p><strong>Nº do Crédito:</strong> {{ credito.id }}</p>
-    <p><strong>Nº da NFS-e:</strong> {{ credito.numeroNfse }}</p>
-    <p><strong>Valor:</strong> {{ credito.valorCredito | currency:'BRL' }}</p>
-    <p><strong>Data de Emissão:</strong> {{ credito.dataEmissao | date:'dd/MM/yyyy' }}</p>
-    <p><strong>Status:</strong> {{ credito.status }}</p>
+  <h3>Detalhes do Crédito</h3>
+  <p><strong>Nº do Crédito:</strong> {{ credito.creditNumber }}</p>
+  <p><strong>Nº da NFS-e:</strong> {{ credito.invoiceNumber }}</p>
+  <p><strong>Valor:</strong> {{ credito.invoicedValue | currency:'BRL' }}</p>
+  <p><strong>Data de Emissão:</strong> {{ credito.constitutionDate | date:'dd/MM/yyyy' }}</p>
+  <p><strong>Status:</strong> {{ credito.creditType }}</p>
 
-    <button class="new-search-button" (click)="novaBusca()">Fazer Nova Busca</button>
+  <button class="new-search-button" (click)="novaBusca()">Fazer Nova Busca</button>
 </div>

@@ -1,7 +1,13 @@
 export interface Credito {
   id: number;
-  numeroNfse: number;
-  valorCredito: number;
-  dataEmissao: string;
-  status: string;
+  creditNumber: string;
+  invoiceNumber: string;
+  constitutionDate: string;
+  invoicedValue: number;
+  taxableAmount: number;
+  issqnValue: number;
+  creditType: string;
+  simplifiedTaxSystem: boolean;
+  taxRate: number;
+  deductionValue: number;
 }

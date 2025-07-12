@@ -7,15 +7,15 @@ import { Credito } from './credito.model';
   providedIn: 'root'
 })
 export class CreditoService {
-  private apiUrl = 'http://localhost:8080/api/v1/creditos';
+  private apiUrl = 'http://localhost:8080/api/v1/credits';
 
   constructor(private http: HttpClient) { }
 
   buscarPorNfse(numeroNfse: number): Observable<Credito[]> {
-    return this.http.get<Credito[]>(`${this.apiUrl}/nfse/${numeroNfse}`);
+    return this.http.get<Credito[]>(`${this.apiUrl}/${numeroNfse}`);
   }
 
   buscarPorNumeroCredito(id: number): Observable<Credito> {
-    return this.http.get<Credito>(`${this.apiUrl}/${id}`);
+    return this.http.get<Credito>(`${this.apiUrl}/credit/${id}`);
   }
 }

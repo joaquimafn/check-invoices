@@ -28,7 +28,7 @@ public class Credit {
 
   private String creditNumber;
   private String invoiceNumber;
-  private LocalDate constitutionDate;
+  private String constitutionDate;
   private BigDecimal issqnValue;
   private String creditType;
   private boolean simplifiedTaxSystem;

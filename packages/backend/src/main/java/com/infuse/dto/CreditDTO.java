@@ -27,7 +27,7 @@ public class CreditDTO {
   private String invoiceNumber;
 
   @Schema(description = "Date when the credit was constituted", example = "2023-10-15")
-  private LocalDate constitutionDate;
+  private String constitutionDate;
 
   @Schema(description = "ISSQN value", example = "150.00")
   private BigDecimal issqnValue;

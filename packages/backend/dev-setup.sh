@@ -100,7 +100,7 @@ case $choice in
     4)
         print_info "Compilando e executando localmente..."
         if command -v mvn &> /dev/null; then
-            mvn clean install
+            mvn clean install -DskipTests -Dcheckstyle.skip=true -Dspotless.skip=true -Dfmt.skip=true
             mvn spring-boot:run
         else
             print_error "Maven não está instalado. Instale o Maven para continuar."

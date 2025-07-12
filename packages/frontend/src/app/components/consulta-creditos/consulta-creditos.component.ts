@@ -39,6 +39,7 @@ export class ConsultaCreditosComponent implements OnInit {
     this.creditos$ = this.creditoService.buscarPorNfse(numeroNfse).pipe(
       finalize(() => this.loading = false),
       catchError(error => {
+        console.log(error);
         const errorMessage = error.error?.message || 'Não foram encontrados créditos para o número da NFS-e informado.';
         this.snackBar.open(errorMessage, 'Fechar', { duration: 5000 });
         return EMPTY;
