@@ -55,17 +55,30 @@ services:
       - dev
       - development
 
-  # Serviço para o frontend (comentado até ser implementado)
-  # frontend:
-  #   build:
-  #     context: ./packages/frontend
-  #   container_name: infuse-frontend
-  #   ports:
-  #     - "3000:80"
-  #   restart: unless-stopped
-  #   profiles:
-  #     - prod
-  #     - production
+  frontend:
+    build:
+      context: ./packages/frontend
+    container_name: infuse-frontend
+    ports:
+      - "3000:80"
+    restart: unless-stopped
+    profiles:
+      - prod
+      - production
+
+  frontend-dev:
+    image: node:20-alpine
+    container_name: infuse-frontend-dev
+    command: sh -c "yarn && yarn start -- --host 0.0.0.0"
+    working_dir: /app
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./packages/frontend:/app
+    restart: unless-stopped
+    profiles:
+      - dev
+      - development
 
 volumes:
   postgres_data: 

@@ -26,5 +26,7 @@ echo -e "${GREEN}Serviços iniciados com sucesso!${NC}"
 echo -e "${GREEN}Backend: http://localhost:8080${NC}"
 if [ "$PROFILE" == "prod" ]; then
     echo -e "${GREEN}Frontend: http://localhost:3000${NC}"
+else
+    echo -e "${GREEN}Frontend: http://localhost:4200${NC}"
 fi
 echo -e "${GREEN}Swagger UI: http://localhost:8080/swagger-ui.html${NC}" 
