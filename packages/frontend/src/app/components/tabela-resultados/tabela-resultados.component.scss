@@ -1,12 +1,79 @@
 :host {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .mat-elevation-z8 {
-    overflow-x: auto;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+  max-height: 400px;
+  /* Altura máxima para evitar tabelas muito grandes */
 }
 
 table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.mat-header-cell {
+  font-weight: 600;
+  color: #1e3a5f;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 12px 16px;
+}
+
+.mat-row:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.mat-row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.mat-paginator {
+  background-color: transparent;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+/* Estilos específicos para mobile */
+@media (max-width: 768px) {
+
+  .mat-cell,
+  .mat-header-cell {
+    padding: 10px 8px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    /* Impede a quebra de linha dentro da célula */
+  }
+
+  table {
+    table-layout: auto;
+  }
+}
+
+/* Estilos para telas muito pequenas */
+@media (max-width: 480px) {
+
+  .mat-cell,
+  .mat-header-cell {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+
+  .mat-paginator {
+    font-size: 0.85rem;
+  }
+
+  .table-container {
+    margin: 0;
     width: 100%;
+  }
 }

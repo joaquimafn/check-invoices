@@ -1,19 +1,21 @@
 <div class="container">
-  <header class="header">
-    <h1><i class="fas fa-database"></i> Sistema de Consulta de Créditos</h1>
-    <p>Consulte créditos por número da NFS-e ou número do crédito de forma rápida e eficiente</p>
-  </header>
+  <div class="app-content">
+    <header class="header">
+      <h1><i class="fas fa-database"></i> Sistema de Consulta de Créditos</h1>
+      <p>Consulte créditos por número da NFS-e ou número do crédito de forma rápida e eficiente</p>
+    </header>
 
-  <div class="tabs">
-    <a class="tab-button" routerLink="/consulta-nfse" routerLinkActive="active">
-      <i class="fas fa-search"></i> Por NFS-e
-    </a>
-    <a class="tab-button" routerLink="/consulta-credito" routerLinkActive="active">
-      <i class="fas fa-credit-card"></i> Por Crédito
-    </a>
+    <div class="tabs">
+      <a class="tab-button" routerLink="/consulta-nfse" routerLinkActive="active">
+        <i class="fas fa-search"></i> Por NFS-e
+      </a>
+      <a class="tab-button" routerLink="/consulta-credito" routerLinkActive="active">
+        <i class="fas fa-credit-card"></i> Por Crédito
+      </a>
+    </div>
+
+    <main class="content-wrapper">
+      <router-outlet></router-outlet>
+    </main>
   </div>
-
-  <main class="content-wrapper">
-    <router-outlet></router-outlet>
-  </main>
 </div>

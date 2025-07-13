@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, EMPTY } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { Observable, EMPTY, Subject, of } from 'rxjs';
+import { catchError, finalize, takeUntil, tap } from 'rxjs/operators';
 import { Credito } from 'src/app/services/credito.model';
 import { CreditoService } from 'src/app/services/credito.service';
 
@@ -11,10 +11,12 @@ import { CreditoService } from 'src/app/services/credito.service';
   templateUrl: './consulta-creditos.component.html',
   styleUrls: ['./consulta-creditos.component.scss']
 })
-export class ConsultaCreditosComponent implements OnInit {
+export class ConsultaCreditosComponent implements OnInit, OnDestroy {
   form!: FormGroup;
   loading = false;
   creditos$!: Observable<Credito[]>;
+
+  private destroy$ = new Subject<void>();
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +30,11 @@ export class ConsultaCreditosComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
   buscar(): void {
     if (this.form.invalid) {
       return;
@@ -37,12 +44,20 @@ export class ConsultaCreditosComponent implements OnInit {
     const numeroNfse = this.form.get('numeroNfse')?.value;
 
     this.creditos$ = this.creditoService.buscarPorNfse(numeroNfse).pipe(
-      finalize(() => this.loading = false),
+      takeUntil(this.destroy$),
+      tap(data => {
+        if (data && data.length === 0) {
+          this.snackBar.open('Não foram encontrados créditos para o número da NFS-e informado.', 'Fechar', { duration: 5000 });
+        }
+      }),
       catchError(error => {
-        console.log(error);
+        console.error('Erro ao buscar créditos:', error);
         const errorMessage = error.error?.message || 'Não foram encontrados créditos para o número da NFS-e informado.';
         this.snackBar.open(errorMessage, 'Fechar', { duration: 5000 });
-        return EMPTY;
+        return of([]);
+      }),
+      finalize(() => {
+        this.loading = false;
       })
     );
   }

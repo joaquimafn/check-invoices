@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 echo -e "${GREEN}=== Iniciando Monorepo Infuse Tecnologia ===${NC}"
 
 # Verificar parâmetro do ambiente
-ENV=${1:-dev}
+ENV=${1:-prod}
 
 if [ "$ENV" == "prod" ] || [ "$ENV" == "production" ]; then
     PROFILE="prod"

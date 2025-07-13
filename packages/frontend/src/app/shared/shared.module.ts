@@ -12,6 +12,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const materialModules = [
   MatToolbarModule,
@@ -23,7 +24,8 @@ const materialModules = [
   MatSnackBarModule,
   MatCardModule,
   MatTableModule,
-  MatTabsModule
+  MatTabsModule,
+  MatPaginatorModule
 ];
 
 @NgModule({

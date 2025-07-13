@@ -19,7 +19,7 @@ public class CreditServiceImpl implements CreditService {
 
   @Override
   public List<CreditDTO> findByInvoiceNumber(String invoiceNumber) {
-    List<Credit> credits = creditRepository.findByInvoiceNumber(invoiceNumber);
+    List<Credit> credits = creditRepository.findDistinctByInvoiceNumber(invoiceNumber);
 
     if (credits.isEmpty()) {
       throw new ResourceNotFoundException("Credit", "invoiceNumber", invoiceNumber);
@@ -31,7 +31,7 @@ public class CreditServiceImpl implements CreditService {
   @Override
   public CreditDTO findByCreditNumber(String creditNumber) {
     return creditRepository
-        .findByCreditNumber(creditNumber)
+        .findFirstByCreditNumber(creditNumber)
         .map(creditMapper::toDTO)
         .orElseThrow(() -> new ResourceNotFoundException("Credit", "creditNumber", creditNumber));
   }

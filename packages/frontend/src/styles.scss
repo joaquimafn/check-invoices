@@ -2,23 +2,47 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  background-color: #eef2f9; /* Cor de fundo azul claro da imagem */
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center; /* Centraliza verticalmente */
-  padding: 20px;
+* {
   box-sizing: border-box;
 }
 
-.container {
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #eef2f9;
+  /* Cor de fundo azul claro da imagem */
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Centraliza verticalmente */
+  padding: 20px;
+}
+
+/* Estilos para tabelas responsivas */
+.mat-table {
   width: 100%;
-  max-width: 650px; /* Largura ajustada para o conteúdo */
-  text-align: center;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 12px 16px !important;
+  word-break: break-word;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    padding: 8px !important;
+    font-size: 0.9rem;
+  }
 }

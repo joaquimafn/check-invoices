@@ -15,7 +15,7 @@ public interface CreditRepository extends JpaRepository<Credit, Long> {
    * @param invoiceNumber the invoice number to search for
    * @return a list of credits associated with the given invoice number
    */
-  List<Credit> findByInvoiceNumber(String invoiceNumber);
+  List<Credit> findDistinctByInvoiceNumber(String invoiceNumber);
 
   /**
    * Finds a credit by its unique credit number
@@ -23,5 +23,5 @@ public interface CreditRepository extends JpaRepository<Credit, Long> {
    * @param creditNumber the credit number to search for
    * @return an Optional containing the credit if found, or empty otherwise
    */
-  Optional<Credit> findByCreditNumber(String creditNumber);
+  Optional<Credit> findFirstByCreditNumber(String creditNumber);
 }
