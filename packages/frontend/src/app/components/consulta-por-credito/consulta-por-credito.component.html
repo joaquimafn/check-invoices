@@ -25,11 +25,18 @@
 
 <div *ngIf="credito" class="credito-details">
   <h3>Detalhes do Crédito</h3>
-  <p><strong>Nº do Crédito:</strong> {{ credito.creditNumber }}</p>
-  <p><strong>Nº da NFS-e:</strong> {{ credito.invoiceNumber }}</p>
-  <p><strong>Valor:</strong> {{ credito.invoicedValue | currency:'BRL' }}</p>
-  <p><strong>Data de Emissão:</strong> {{ credito.constitutionDate | date:'dd/MM/yyyy' }}</p>
-  <p><strong>Status:</strong> {{ credito.creditType }}</p>
+  <div class="details-grid">
+    <p><strong>Nº do Crédito:</strong> {{ credito.creditNumber }}</p>
+    <p><strong>Nº da NFS-e:</strong> {{ credito.invoiceNumber }}</p>
+    <p><strong>Data de Emissão:</strong> {{ credito.constitutionDate | date:'dd/MM/yyyy' }}</p>
+    <p><strong>Status (Tipo):</strong> {{ credito.creditType }}</p>
+    <p><strong>Valor Faturado:</strong> {{ credito.invoicedValue | currency:'BRL' }}</p>
+    <p><strong>Valor ISSQN:</strong> {{ credito.issqnValue | currency:'BRL' }}</p>
+    <p><strong>Simples Nacional:</strong> {{ credito.simplifiedTaxSystem ? 'Sim' : 'Não' }}</p>
+    <p><strong>Taxa:</strong> {{ credito.taxRate }}%</p>
+    <p><strong>Valor Dedução:</strong> {{ credito.deductionValue | currency:'BRL' }}</p>
+    <p><strong>Base de Cálculo:</strong> {{ credito.taxableAmount | currency:'BRL' }}</p>
+  </div>
 
   <button class="new-search-button" (click)="novaBusca()">Fazer Nova Busca</button>
 </div>
